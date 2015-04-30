@@ -30,7 +30,7 @@ module Fog
 
         def custom_fields
           requires :id
-          service.custom_fields( :vapp => self)
+          service.custom_fields(:vapp => self)
         end
 
         # @param [String] action The specified action is applied to all virtual

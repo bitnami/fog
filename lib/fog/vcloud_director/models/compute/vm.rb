@@ -124,6 +124,11 @@ module Fog
           service.vm_customizations.new(data)
         end
 
+        def custom_fields
+          requires :id
+          service.custom_fields(:vapp => self)
+        end
+
         def network
           requires :id
           data = service.get_vm_network(id).body
