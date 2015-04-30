@@ -330,6 +330,7 @@ module Fog
         deprecate :auth_token, :vcloud_token
 
         attr_reader :end_point, :api_version, :show_progress
+        attr_writer :vcloud_token
         alias_method :show_progress?, :show_progress
 
         def initialize(options={})
@@ -460,7 +461,8 @@ module Fog
         private
 
         def login
-          if @vcloud_token = ENV['FOG_VCLOUD_TOKEN']
+          @vcloud_token ||= ENV['FOG_VCLOUD_TOKEN']
+          if @vcloud_token
             response = get_current_session
             session_org = response.body[:org]
             session_user = response.body[:user]
